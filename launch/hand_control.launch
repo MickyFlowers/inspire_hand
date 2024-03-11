@@ -1,21 +1,10 @@
 <?xml version="1.0" ?>
 <launch>
-  <arg name="right_hand_id" default= "1" />
-  <arg name="right_hand_port" default= "/dev/ttyUSB1" />
-  <arg name="left_hand_id" default= "1" />
-  <arg name="left_hand_port" default= "/dev/ttyUSB0" />
+  <arg name="port" default= "/dev/ttyS1" />
   <arg name="baud" default= "115200" />
   <arg name="test_flag" default= "0" />
-  <node name="right_inspire_hand" pkg="inspire_hand" type="inspire_hand" output="screen" >
-    <param name = "hand_id" value="$(arg right_hand_id)" />
-    <param name = "portname" value="$(arg right_hand_port)" />
-    <param name = "baudrate" value="$(arg baud)" />
-    <param name = "test_flags" value="$(arg test_flag)" />
-  </node>
-  
-  <node name="left_inspire_hand" pkg="inspire_hand" type="inspire_hand" output="screen" >
-    <param name = "hand_id" value="$(arg left_hand_id)" />
-    <param name = "portname" value="$(arg left_hand_port)" />
+  <node name="inspire_hand" pkg="inspire_hand" type="inspire_hand" output="screen" >
+    <param name = "portname" value="$(arg port)" />
     <param name = "baudrate" value="$(arg baud)" />
     <param name = "test_flags" value="$(arg test_flag)" />
   </node>
