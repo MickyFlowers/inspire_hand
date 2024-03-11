@@ -1,2 +1,3 @@
+int32 id
 ---
 bool setclear_error_accepted

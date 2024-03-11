@@ -1,3 +1,4 @@
 int32 id
+int32 set_id
 ---
 bool idgrab

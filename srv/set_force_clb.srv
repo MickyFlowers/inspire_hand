@@ -1,2 +1,3 @@
+int32 id
 ---
 bool setforce_clb_accepted
