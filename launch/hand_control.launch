@@ -1,9 +1,9 @@
 <?xml version="1.0" ?>
 <launch>
   <arg name="right_hand_id" default= "1" />
-  <arg name="right_hand_port" default= "/dev/ttyUSB1" />
+  <arg name="right_hand_port" default= "/dev/ttyUSB0" />
   <arg name="left_hand_id" default= "1" />
-  <arg name="left_hand_port" default= "/dev/ttyUSB0" />
+  <arg name="left_hand_port" default= "/dev/ttyUSB1" />
   <arg name="baud" default= "115200" />
   <arg name="test_flag" default= "0" />
   <node name="right_inspire_hand" pkg="inspire_hand" type="inspire_hand" output="screen" >
