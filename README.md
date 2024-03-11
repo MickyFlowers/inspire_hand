@@ -6,19 +6,19 @@
 
 由于因时灵巧手长度过长，部分灵巧手存在拆除下半部分的情况，以下简称为“手腕”。未拆掉手腕的灵巧手线序与接口如图所示：
 
-<img src="images/Screenshot 2024-03-06 at 19.25.02.png" alt="Screenshot 2024-03-06 at 19.25.02" style="zoom:50%;" />
+<img src="images/Screenshot 2024-03-06 at 19.25.02.png" alt="Screenshot 2024-03-06 at 19.25.02" style="zoom:20%;" />
 
 注意：
 
 - 通过手腕接口接入灵巧手的VCC输入为24V，经过一个降压板后转为7-9V，降压板如图所示：
 
-<img src="images/image-20240306192330229.png" alt="image-20240306192330229" style="zoom:20%;" />
+<img src="images/image-20240306192330229.png" alt="image-20240306192330229" style="zoom:10%;" />
 
 - 用于双臂倒茶demo的灵巧手为RS232的通信方式
 
 拆掉手腕后，灵巧手的线序如下图和下表所示：
 
-<img src="images/image-20240306192444281.png" alt="image-20240306192444281" style="zoom:20%;" />
+<img src="images/image-20240306192444281.png" alt="image-20240306192444281" style="zoom:10%;" />
 
 | 线路颜色 |  引脚定义   |
 | :------: | :---------: |
