@@ -21,6 +21,7 @@
 <div align=center>
 <img src="images/image-20240306192444281.png" alt="image-20240306192444281" width="200px" />
 </div>
+
 | 线路颜色 |  引脚定义   |
 | :------: | :---------: |
 |    黑    |     GND     |
