@@ -48,6 +48,13 @@
 - 在确保线路无问题的情况下，可能会出现无法连上的情况，此时可以尝试重新插拔灵巧手的电源和串口。
 - 部分灵巧手可能存在修改波特率的情况，在连接时请尝试多种波特率。
 
+### 快速开始
+在代码中实例化一个inspire_hand::InspireHandSerial对象，传入端口和波特率，即可初始化inspire_hand的端口
+```c++
+inspire_hand::InspireHandSerial inspire_hand_serial("/dev/ttyUSB0", 115200);
+```
+该类包含以下方法可供调用
+
 ### ROS Package
 
 使用以下命令克隆因时灵巧手的ros package并用你喜欢的编译命令对其进行编译：
