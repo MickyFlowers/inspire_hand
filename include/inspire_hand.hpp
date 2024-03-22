@@ -735,7 +735,7 @@ namespace inspire_hand
                 }
                 else
                 {
-                    cout << "Failed to find the id: " << int(id) << endl;
+                    throw "Failed to find the id when set id";
                 }
             }
         }
@@ -777,7 +777,7 @@ namespace inspire_hand
                 }
                 else
                 {
-                    cout << "Failed to find the id: " << int(id) << endl;
+                    throw "Failed to find the id when set angle";
                 }
             }
         }
@@ -819,7 +819,7 @@ namespace inspire_hand
                 }
                 else
                 {
-                    cout << "Failed to find the id: " << int(id) << endl;
+                    throw "Failed to find the id when set baudrate";
                 }
             }
         }
@@ -860,7 +860,7 @@ namespace inspire_hand
                 }
                 else
                 {
-                    cout << "Failed to find the id: " << int(id) << endl;
+                    throw "Failed to find the id when clear error";
                 }
             }
         }
@@ -901,7 +901,7 @@ namespace inspire_hand
                 }
                 else
                 {
-                    cout << "Failed to find the id: " << int(id) << endl;
+                    throw "Failed to find the id when save flash";
                 }
             }
         }
@@ -942,7 +942,7 @@ namespace inspire_hand
                 }
                 else
                 {
-                    cout << "Failed to find the id: " << int(id) << endl;
+                    throw "Failed to find the id when reset";
                 }
             }
         }
@@ -983,7 +983,7 @@ namespace inspire_hand
                 }
                 else
                 {
-                    cout << "Failed to find the id: " << int(id) << endl;
+                    throw "Failed to find the id when force calibration";
                 }
             }
         }
@@ -1025,7 +1025,7 @@ namespace inspire_hand
                 }
                 else
                 {
-                    cout << "Failed to find the id: " << int(id) << endl;
+                    throw "Failed to find the id when set current limit";
                 }
             }
         }
@@ -1067,7 +1067,7 @@ namespace inspire_hand
                 }
                 else
                 {
-                    cout << "Failed to find the id: " << int(id) << endl;
+                    throw "Failed to find the id when set default speed";
                 }
             }
         }
@@ -1109,7 +1109,7 @@ namespace inspire_hand
                 }
                 else
                 {
-                    cout << "Failed to find the id: " << int(id) << endl;
+                    throw "Failed to find the id when set default force threshold";
                 }
             }
         }
@@ -1151,7 +1151,7 @@ namespace inspire_hand
                 }
                 else
                 {
-                    cout << "Failed to find the id: " << int(id) << endl;
+                    throw "Failed to find the id when set pos";
                 }
             }
         }
@@ -1193,7 +1193,7 @@ namespace inspire_hand
                 }
                 else
                 {
-                    cout << "Failed to find the id: " << int(id) << endl;
+                    throw "Failed to find the id when set force threshold";
                 }
             }
         }
@@ -1235,7 +1235,7 @@ namespace inspire_hand
                 }
                 else
                 {
-                    cout << "Failed to find the id: " << int(id) << endl;
+                    throw "Failed to find the id when set speed";
                 }
             }
         }
@@ -1276,7 +1276,7 @@ namespace inspire_hand
                 }
                 else
                 {
-                    cout << "Failed to find the id: " << int(id) << endl;
+                    throw "Failed to find the id when get pos";
                 }
             }
         }
@@ -1317,7 +1317,7 @@ namespace inspire_hand
                 }
                 else
                 {
-                    cout << "Failed to find the id: " << int(id) << endl;
+                    throw "Failed to find the id when get angle";
                 }
             }
         }
@@ -1358,7 +1358,7 @@ namespace inspire_hand
                 }
                 else
                 {
-                    cout << "Failed to find the id: " << int(id) << endl;
+                    throw "Failed to find the id when get force";
                 }
             }
         }
@@ -1399,7 +1399,7 @@ namespace inspire_hand
                 }
                 else
                 {
-                    cout << "Failed to find the id: " << int(id) << endl;
+                    throw "Failed to find the id when get current";
                 }
             }
         }
@@ -1440,7 +1440,7 @@ namespace inspire_hand
                 }
                 else
                 {
-                    cout << "Failed to find the id: " << int(id) << endl;
+                    throw "Failed to find the id when get error";
                 }
             }
         }
@@ -1481,7 +1481,7 @@ namespace inspire_hand
                 }
                 else
                 {
-                    cout << "Failed to find the id: " << int(id) << endl;
+                    throw "Failed to find the id when get status";
                 }
             }
         }
@@ -1522,7 +1522,7 @@ namespace inspire_hand
                 }
                 else
                 {
-                    cout << "Failed to find the id: " << int(id) << endl;
+                    throw "Failed to find the id when get temperature";
                 }
             }
         }
@@ -1563,7 +1563,7 @@ namespace inspire_hand
                 }
                 else
                 {
-                    cout << "Failed to find the id: " << int(id) << endl;
+                    throw "Failed to find the id when get pos set";
                 }
             }
         }
@@ -1604,7 +1604,7 @@ namespace inspire_hand
                 }
                 else
                 {
-                    cout << "Failed to find the id: " << int(id) << endl;
+                    throw "Failed to find the id when get angle set";
                 }
             }
         }
@@ -1645,7 +1645,21 @@ namespace inspire_hand
                 }
                 else
                 {
-                    cout << "Failed to find the id: " << int(id) << endl;
+                    throw "Failed to find the id when get force set";
+                }
+            }
+        }
+        InspireHand *getInspireHand(uint8_t id)
+        {
+            for (int i = 0; i < inspire_hands_.size(); i++)
+            {
+                if (inspire_hands_[i].id_ == id)
+                {
+                    return &inspire_hands_[i];
+                }
+                else
+                {
+                    throw "Failed to find the id";
                 }
             }
         }
