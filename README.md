@@ -54,43 +54,29 @@
 
 ```bash
 # git clone 
-git clone https://github.com/MickyFlowers/inspire_hand.git
+git clone https://github.com/MickyFlowers/inspire_hand.git -b fd_version
 # build
 catkin build
 ```
 
-运行灵巧手的文件为`hand_control.launch`，文件内容如下所示：
+运行灵巧手的文件为`inspire_hand_server.launch`，文件内容如下所示：
 
 ```yaml
 <?xml version="1.0" ?>
 <launch>
-  <arg name="right_hand_id" default= "1" />
-  <arg name="right_hand_port" default= "/dev/ttyUSB1" />
-  <arg name="left_hand_id" default= "1" />
-  <arg name="left_hand_port" default= "/dev/ttyUSB0" />
-  <arg name="baud" default= "115200" />
-  <arg name="test_flag" default= "0" />
-  <node name="right_inspire_hand" pkg="inspire_hand" type="inspire_hand" output="screen" >
-    <param name = "hand_id" value="$(arg right_hand_id)" />
-    <param name = "portname" value="$(arg right_hand_port)" />
-    <param name = "baudrate" value="$(arg baud)" />
-    <param name = "test_flags" value="$(arg test_flag)" />
+  <arg name="port" default= "/dev/ttyUSB0" />
+  <arg name="baudrate" default= "115200" />
+  <node name="inspire_hand_server" pkg="inspire_hand" type="inspire_hand_server" output="screen" >
+    <param name = "port" value="$(arg port)" />
+    <param name = "baudrate" value="$(arg baudrate)" />
   </node>
-  
-  <node name="left_inspire_hand" pkg="inspire_hand" type="inspire_hand" output="screen" >
-    <param name = "hand_id" value="$(arg left_hand_id)" />
-    <param name = "portname" value="$(arg left_hand_port)" />
-    <param name = "baudrate" value="$(arg baud)" />
-    <param name = "test_flags" value="$(arg test_flag)" />
-  </node>
-  
 </launch>
 ```
 
-该文件中运行了左手和右手的节点，在使用时候需要更改文件内容，将灵巧手id，灵巧手端口号和波特率进行对应，而后运行命令：
+该launch文件启动了端口并能够控制总线上所有的灵巧手运行命令：
 
 ```bash
-roslaunch inspire_hand hand_control.launch [args]
+roslaunch inspire_hand inspire_hand_server.launch port:="/dev/ttyS1" baudrate:=115200
 ```
 
 该节点以ROS Service Server的形式运行，可以在命令行中查看所有可调用的服务：
@@ -99,12 +85,11 @@ roslaunch inspire_hand hand_control.launch [args]
 rosservice list
 ```
 
-以读写右手灵巧手关节数据为例：
+以写id=1的灵巧手关节数据为例：
 
 ```bash
-# 读取
-rosservice call /right_inspire_hand/get_angle_act
+
 # 写(angle1-6替换为0-1000的数即可改变灵巧手关节角度值)
-rosservice call /right_inspire_hand/set_angle angle1 angle2 angle3 angle4 angle5 angle6
+rosservice call /right_inspire_hand/set_angle id angle1 angle2 angle3 angle4 angle5 angle6
 ```
 
