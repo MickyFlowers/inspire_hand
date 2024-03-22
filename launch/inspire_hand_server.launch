@@ -1,0 +1,8 @@
+<?xml version="1.0" ?>
+<launch>
+
+  <node name="inspire_hand_server" pkg="inspire_hand" type="inspire_hand_server" output="screen" >
+    <param name = "port" value="/dev/ttyUSB0" />
+    <param name = "baudrate" value="115200" />
+  </node>
+</launch>

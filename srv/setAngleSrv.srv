@@ -1,0 +1,9 @@
+# /home/cyx/ros_ws/src/inspire_hand/srv/setAngleSrv.srv
+uint8 id
+uint16 angle0
+uint16 angle1
+uint16 angle2
+uint16 angle3
+uint16 angle4
+uint16 angle5
+---

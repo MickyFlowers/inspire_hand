@@ -4,7 +4,7 @@ project(inspire_hand)
 find_package(catkin REQUIRED COMPONENTS
   roscpp
 #   serial
-#   message_generation
+  message_generation
 #   tf
 #   std_msgs
 #   genmsg
@@ -20,7 +20,10 @@ include_directories(${catkin_INCLUDE_DIRS}
    
 #SET(HEADERS ${PROJECT_SOURCE_DIR}/include/hand_control.h)
 
-
+add_service_files(
+	FILES
+	setAngleSrv.srv
+)
 # add_service_files(FILES set_id.srv
 # 				set_redu_ratio.srv
 # 				set_clear_error.srv
@@ -47,16 +50,20 @@ include_directories(${catkin_INCLUDE_DIRS}
 # 				get_angle_set.srv
 # 				get_force_set.srv)
 
-# generate_messages(DEPENDENCIES
-#     std_msgs)
+generate_messages(DEPENDENCIES
+    std_msgs)
 
 catkin_package(
   INCLUDE_DIRS include
   LIBRARIES
-  DEPENDS roscpp
+  DEPENDS roscpp 
   )
 
 add_executable(inspire_hand_test src/inspire_hand_test.cpp)
+add_executable(inspire_hand_server src/inspire_hand_server.cpp)
+target_link_libraries(inspire_hand_server
+    ${catkin_LIBRARIES}
+)
 target_link_libraries(inspire_hand_test
     ${catkin_LIBRARIES}
 )
