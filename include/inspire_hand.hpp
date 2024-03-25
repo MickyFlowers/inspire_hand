@@ -100,6 +100,8 @@ namespace inspire_hand
             cmd_.force_threshold.resize(6);
             cmd_.speed.resize(6);
         }
+    
+    private:
         vector<uint8_t> encode(CmdType_e command_type)
         {
             vector<uint8_t> data;
@@ -654,47 +656,6 @@ namespace inspire_hand
         ~InspireHandSerial()
         {
             close(fd_);
-        }
-
-        void serachHands(void)
-        {
-            uint8_t recv_len = 14;
-            for (int id = 1; id <= 10; id++)
-            {
-                InspireHand hand(id, baudrate_);
-                vector<uint8_t> data = hand.encode(GetError);
-                uint8_t send_data[data.size()];
-                for (int i = 0; i < data.size(); i++)
-                {
-                    send_data[i] = data[i];
-                }
-                if (write(fd_, send_data, data.size()) < 0)
-                {
-                    cout << "Failed to write data" << endl;
-                    return;
-                }
-                uint8_t recv_data[recv_len];
-                if (read(fd_, recv_data, recv_len) <= 0)
-                {
-                    cout << "Failed to read data from id: " << id << endl;
-                    continue;
-                }
-
-                vector<uint8_t> recv_data_vec(recv_len);
-                for (int i = 0; i < recv_len; i++)
-                {
-                    recv_data_vec[i] = recv_data[i];
-                }
-                if (hand.decode(GetError, recv_data_vec))
-                {
-                    inspire_hands_.push_back(hand);
-                }
-            }
-            cout << "There are " << inspire_hands_.size() << " inspire hands" << endl;
-            for (int i = 0; i < inspire_hands_.size(); i++)
-            {
-                cout << "Inspire hand id: " << int(inspire_hands_[i].id_) << endl;
-            }
         }
 
         void setId(uint8_t id, uint8_t set_id)
@@ -1649,7 +1610,7 @@ namespace inspire_hand
                 }
             }
         }
-        InspireHand::fdb *getInspireHand(uint8_t id)
+        InspireHand::fdb *getInspireHandFeedback(uint8_t id)
         {
             for (int i = 0; i < inspire_hands_.size(); i++)
             {
@@ -1665,6 +1626,46 @@ namespace inspire_hand
         }
 
     private:
+        void serachHands(void)
+        {
+            uint8_t recv_len = 14;
+            for (int id = 1; id <= 10; id++)
+            {
+                InspireHand hand(id, baudrate_);
+                vector<uint8_t> data = hand.encode(GetError);
+                uint8_t send_data[data.size()];
+                for (int i = 0; i < data.size(); i++)
+                {
+                    send_data[i] = data[i];
+                }
+                if (write(fd_, send_data, data.size()) < 0)
+                {
+                    cout << "Failed to write data" << endl;
+                    return;
+                }
+                uint8_t recv_data[recv_len];
+                if (read(fd_, recv_data, recv_len) <= 0)
+                {
+                    cout << "Failed to read data from id: " << id << endl;
+                    continue;
+                }
+
+                vector<uint8_t> recv_data_vec(recv_len);
+                for (int i = 0; i < recv_len; i++)
+                {
+                    recv_data_vec[i] = recv_data[i];
+                }
+                if (hand.decode(GetError, recv_data_vec))
+                {
+                    inspire_hands_.push_back(hand);
+                }
+            }
+            cout << "There are " << inspire_hands_.size() << " inspire hands" << endl;
+            for (int i = 0; i < inspire_hands_.size(); i++)
+            {
+                cout << "Inspire hand id: " << int(inspire_hands_[i].id_) << endl;
+            }
+        }
         // serial
         int fd_;
         int baudrate_;
